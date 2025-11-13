@@ -93,6 +93,31 @@ desenvolvedores, além de um ferramental integrado, que incorpora servidores
 \textsc{ide}s, formatadores de código, e resolução automática e controle de
 versões de dependências. \cite{klabnik2021rust}
 
+\subsection{Sintaxe Básica}
+
+A grosso modo, a linguagem dispõe de uma sintaxe familiar e \textit{C-like}, e
+segue um paradigma \textit{imperativo e estruturado}, com certas
+características procedurais clássicas, e outras funcionais modernas. A tipagem
+é estática e extremamente rígida para providenciar segurança a tempo de
+compilação, mas o compilador é capaz de inferir o tipo de uma variável usando
+\textit{inferência bidirecional} \cite{pierce2000local}. No exemplo abaixo,
+usamos a palavra \texttt{fn} para declarar uma função \texttt{main}, que não
+recebe parâmetros, e marca o ponto de entrada do programa---nela, usamos a
+palavra \texttt{let} para declarar uma variável \texttt{x}, e em seguida o
+macro \texttt{println!()} exibe o valor dessa variável na saída
+padrão.\footnote{O ponto de exclamação indica que \texttt{println!()} não é uma
+função, mas um macro: no Rust, muitas funcionalidades são implementadas por
+meio de metaprogramação e macros complexos, que permitem que o compilador
+otimize ao máximo até mesmo as operações mais simples.} O tipo de \texttt{x} é
+inferido como \texttt{i32}, um número inteiro de 32 bits, com sinal.
+
+\begin{minted}{rust}
+	fn main() {
+		let x = 5;
+		println!("O valor de ‘x’ é: {x}");
+	}
+\end{minted}
+
 \section{Análise crítica}
 
 Esta seção apresentará uma análise crítica da linguagem Rust, destacando três
