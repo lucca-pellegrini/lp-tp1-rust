@@ -7,14 +7,14 @@
 Linguagens de Programação}
 
 \author{ % Autores
-	\textsc{Amanda Canizela Guimarães} \\
-	\normalsize{\href{mailto:amanda.canizela@gmail.com}{\texttt{amanda.canizela@gmail.com}}}
-	\and
-	\textsc{Ariel Inácio Jordão Coelho} \\
-	\normalsize{\href{mailto:arielijordao@gmail.com}{\texttt{arielijordao@gmail.com}}}
-	\and
-	\textsc{Lucca Pellegrini} \\
-	\normalsize{\href{mailto:lucca@verticordia.com}{\texttt{lucca@verticordia.com}}}
+    \textsc{Amanda Canizela Guimarães} \\
+    \normalsize{\href{mailto:amanda.canizela@gmail.com}{\texttt{amanda.canizela@gmail.com}}}
+    \and
+    \textsc{Ariel Inácio Jordão Coelho} \\
+    \normalsize{\href{mailto:arielijordao@gmail.com}{\texttt{arielijordao@gmail.com}}}
+    \and
+    \textsc{Lucca Pellegrini} \\
+    \normalsize{\href{mailto:lucca@verticordia.com}{\texttt{lucca@verticordia.com}}}
 }
 
 \date{\today}
@@ -28,15 +28,15 @@ Linguagens de Programação}
 
 \begin{abstract}
 
-	Esse trabalho aprofunda os conhecimentos sobre a linguagem de programação
-	Rust. Nele, será apresentada a história de tal código, junto da criação de
-	um panorama da mesma, colaborando para um melhor entendimento de suas
-	aplicações e utilidades, tanto atuais quanto ao longo da história. Além
-	disso, o grupo trará exemplos para realizar uma análise de sua
-	implementação, mostrando o uso da linguagem e seus paradigmas diante de
-	práticas cotidianas e mais avançadas. Por fim, será posto em evidência a
-	importância da linguagem em questão para a fomentação de outras e seu
-	impacto na história do desenvolvimento tecnológico.
+    Esse trabalho aprofunda os conhecimentos sobre a linguagem de programação
+    Rust. Nele, será apresentada a história de tal código, junto da criação de
+    um panorama da mesma, colaborando para um melhor entendimento de suas
+    aplicações e utilidades, tanto atuais quanto ao longo da história. Além
+    disso, o grupo trará exemplos para realizar uma análise de sua
+    implementação, mostrando o uso da linguagem e seus paradigmas diante de
+    práticas cotidianas e mais avançadas. Por fim, será posto em evidência a
+    importância da linguagem em questão para a fomentação de outras e seu
+    impacto na história do desenvolvimento tecnológico.
 
 \end{abstract}
 
@@ -72,10 +72,10 @@ de memória, por meio de uma variedade de abstrações, sem sacrificar desempenh
 autor de C++:
 
 \begin{quote}
-	Em geral, implementações de C++ seguem o princípio do
-	\textit{zero-overhead}: você não paga pelo que não usa. E, além disso,
-	aquilo que você usa não poderia ser implementado manualmente de forma
-	melhor. \cite{stroustrup2004abstraction}
+    Em geral, implementações de C++ seguem o princípio do
+    \textit{zero-overhead}: você não paga pelo que não usa. E, além disso,
+    aquilo que você usa não poderia ser implementado manualmente de forma
+    melhor. \cite{stroustrup2004abstraction}
 \end{quote}
 
 Apesar disso, o Rust não se limita apenas à programação de sistemas
@@ -112,25 +112,28 @@ otimize ao máximo até mesmo as operações mais simples.} O tipo de \texttt{x}
 inferido como \texttt{i32}, um número inteiro de 32 bits, com sinal.
 
 \begin{minted}{rust}
-	fn main() {
-		let x = 5;
-		println!("O valor de ‘x’ é: {x}");
-	}
+    fn main() {
+        let x = 5;
+        println!("O valor de ‘x’ é: {x}");
+    }
 \end{minted}
 
 Todas as variáveis são imutáveis por padrão. Para modificá-las, é preciso
 declará-las mutáveis com a palavra \texttt{mut}. Também é possível especificar
 o tipo da variável após seu  nome na declaração. No exemplo abaixo, declaramos
-a variável \texttt{x} com tipo \texttt{u16}---isso é, um número inteiro de 16
-bits sem sinal (\textit{unsigned}):
+a variável \texttt{c} com tipo \texttt{char}---isso é, um caractere
+\textsc{utf}-8:\footnote{Para ser mais exato, um \texttt{char} é um
+\textit{code point}, e não um \textit{grapheme cluster}. A distinção é sutil,
+mas importante para internacionalização da linguagem. \cite{rfc3629}
+\cite{uax29}}
 
 \begin{minted}{rust}
-	fn main() {
-		let mut x: u16 = 5;
-		println!("O valor de ‘x’ inicialmente é: {x}");
-		x = 6; // Alterar o valor só é possível pois usamos ‘mut’ acima.
-		println!("O valor de ‘x’ agora é: {x}");
-	}
+    fn main() {
+        let mut c: char = '🐍';
+        println!("O valor de ‘c’ inicialmente é: {c}");
+        c = '🦀'; // Alterar o valor só é possível pois usamos ‘mut’ acima.
+        println!("O valor de ‘c’ agora é: {c}");
+    }
 \end{minted}
 
 \section{Análise crítica}
@@ -152,3 +155,5 @@ a relevância da linguagem Rust no cenário atual da computação.
 \printbibliography
 
 \end{document}
+
+% vim: et ts=4 sts=4 sw=4

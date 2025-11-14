@@ -35,9 +35,14 @@
 	\linespread{1.05} % Aumentando o espaçamento entre as linhas (a fonte não fica tão legal com o espaçamento padrão)
 	\usepackage{microtype} % Não lembro o que isso faz
 
-% Configuração da fonte monoespaçada (Blex Mono)
+% Configuração das fontes
 \usepackage{fontspec}
 	\setmonofont{BlexMonoNerdFontPropo}[Scale=0.75]
+	% Configuração de fallback para emojis
+	\newfontfamily{\emojifont}{Noto Color Emoji}[Renderer=HarfBuzz,Scale=0.75]
+	\usepackage{newunicodechar}
+	\newunicodechar{🐍}{{\emojifont 🐍}}
+	\newunicodechar{🦀}{{\emojifont 🦀}}
 
 \usepackage{enumitem} % Listas customizadas
 	\setlist[itemize]{noitemsep} % Pra tornar as listas mais compactas
