@@ -101,24 +101,26 @@ características procedurais clássicas, e outras funcionais modernas. A tipagem
 é estática e extremamente rígida, para providenciar segurança a tempo de
 compilação, mas o compilador é capaz de inferir o tipo de uma variável usando
 \textit{inferência bidirecional} \cite{pierce2000local}. No exemplo abaixo,
-usamos a palavra \texttt{fn} para declarar uma função \texttt{main}, que não
-recebe parâmetros, e marca o ponto de entrada do programa---nela, usamos a
-palavra \texttt{let} para declarar uma variável \texttt{x}, e em seguida o
-macro \texttt{println!()} exibe o valor dessa variável na saída
-padrão.\footnote{O ponto de exclamação indica que \texttt{println!()} não é uma
-função, mas um macro: no Rust, muitas funcionalidades são implementadas por
-meio de metaprogramação com macros sofisticados, que permitem que o compilador
-otimize ao máximo até mesmo as operações mais simples. Nesse caso, o macro é
-executado a tempo de compilação, e é o \textit{compilador} que gera o código
-que converte nosso inteiro para uma string a ser exibida---ou seja, é muito
-mais eficiente que um \texttt{printf()} em uma linguagem tradicional, que faz a
-conversão a tempo de execução. \cite[Cap.~7]{gjengset2021rust}} O tipo de
-\texttt{x} é inferido como \texttt{i32}, um número inteiro de 32 bits, com
-sinal.\footnote{Há uma variedade de tipos escalares padrão, mas em geral, tipos
-numéricos têm tamanhos explícitos: \texttt{u16} é um \textit{unsigned} de 16
-bits, \texttt{u8} é um \textit{byte} individual, \texttt{f64} é um
-\textit{float} de 64 bits, \texttt{isize} é um \textit{signed} cujo tamanho é
-igual ao tamanho de uma palavra na arquitetura atual, e assim por diante.}
+usamos a palavra \mintinline{rust}{fn} para declarar uma função
+\mintinline{rust}{main}, que não recebe parâmetros, e marca o ponto de entrada
+do programa---nela, usamos a palavra \mintinline{rust}{let} para declarar uma
+variável \texttt{x}, e em seguida o macro \mintinline{rust}{println!()} exibe o
+valor dessa variável na saída padrão.\footnote{O ponto de exclamação indica que
+\mintinline{rust}{println!()} não é uma função, mas um macro: no Rust, muitas
+funcionalidades são implementadas por meio de metaprogramação com macros
+sofisticados, que permitem que o compilador otimize ao máximo até mesmo as
+operações mais simples. Nesse caso, o macro é executado a tempo de compilação,
+e é o \textit{compilador} que gera o código que converte nosso inteiro para uma
+string a ser exibida---ou seja, é muito mais eficiente que um
+\texttt{printf()} em uma linguagem tradicional, que faz a conversão a tempo de
+execução. \cite[Cap.~7]{gjengset2021rust}} O tipo de \texttt{x} é inferido como
+\mintinline{rust}{i32}, um número inteiro de 32 bits, com sinal.\footnote{Há
+uma variedade de tipos escalares padrão, mas em geral, tipos numéricos têm
+tamanhos explícitos: \mintinline{rust}{u16} é um \textit{unsigned} de 16 bits,
+\mintinline{rust}{u8} é um \textit{byte} individual, \mintinline{rust}{f64} é
+um \textit{float} de 64 bits, \mintinline{rust}{isize} é um \textit{signed}
+cujo tamanho é igual ao tamanho de uma palavra na arquitetura atual, e assim
+por diante.}
 
 \begin{minted}{rust}
     fn main() {
@@ -128,11 +130,11 @@ igual ao tamanho de uma palavra na arquitetura atual, e assim por diante.}
 \end{minted}
 
 Todas as variáveis são imutáveis por padrão. Para modificá-las, é preciso
-declará-las mutáveis com a palavra \texttt{mut}. Também é possível especificar
-o tipo da variável após seu  nome na declaração, como se faz em Python ou
-TypeScript. No exemplo abaixo, declaramos a variável \textit{mutável}
-\texttt{c} com tipo \texttt{char}---isso é, um caractere
-\textsc{utf}-8:\footnote{Para ser mais exato, um \texttt{char} é um
+declará-las mutáveis com a palavra \mintinline{rust}{mut}. Também é possível
+especificar o tipo da variável após seu  nome na declaração, como se faz em
+Python ou TypeScript. No exemplo abaixo, declaramos a variável \textit{mutável}
+\texttt{c} com tipo \mintinline{rust}{char}---isso é, um caractere
+\textsc{utf}-8:\footnote{Para ser mais exato, um \mintinline{rust}{char} é um
 \textit{code point} especificado pelo padrão \textsc{utf}-8 \cite[§1]{rfc3629},
 e não um \textit{grapheme cluster} do padrão Unicode \cite[§3]{uax29}. A
 distinção é sutil, mas importante para internacionalização da linguagem.
