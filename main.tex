@@ -118,6 +118,21 @@ inferido como \texttt{i32}, um número inteiro de 32 bits, com sinal.
 	}
 \end{minted}
 
+Todas as variáveis são imutáveis por padrão. Para modificá-las, é preciso
+declará-las mutáveis com a palavra \texttt{mut}. Também é possível especificar
+o tipo da variável após seu  nome na declaração. No exemplo abaixo, declaramos
+a variável \texttt{x} com tipo \texttt{u16}---isso é, um número inteiro de 16
+bits sem sinal (\textit{unsigned}):
+
+\begin{minted}{rust}
+	fn main() {
+		let mut x: u16 = 5;
+		println!("O valor de ‘x’ inicialmente é: {x}");
+		x = 6; // Alterar o valor só é possível pois usamos ‘mut’ acima.
+		println!("O valor de ‘x’ agora é: {x}");
+	}
+\end{minted}
+
 \section{Análise crítica}
 
 Esta seção apresentará uma análise crítica da linguagem Rust, destacando três
