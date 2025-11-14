@@ -109,7 +109,12 @@ padrão.\footnote{O ponto de exclamação indica que \texttt{println!()} não é
 função, mas um macro: no Rust, muitas funcionalidades são implementadas por
 meio de metaprogramação e macros complexos, que permitem que o compilador
 otimize ao máximo até mesmo as operações mais simples.} O tipo de \texttt{x} é
-inferido como \texttt{i32}, um número inteiro de 32 bits, com sinal.
+inferido como \texttt{i32}, um número inteiro de 32 bits, com
+sinal.\footnote{Há uma variedade de tipos escalares padrão, mas em geral, tipos
+numéricos têm tamanhos explícitos: \texttt{u16} é um \textit{unsigned} de 16
+bits, \texttt{f64} é um \textit{float} de 64 bits, \texttt{isize} é um
+\textit{signed} cujo tamanho é igual ao tamanho de uma palavra na arquitetura
+atual, e assim por diante.}
 
 \begin{minted}{rust}
     fn main() {
