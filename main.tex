@@ -108,13 +108,17 @@ macro \texttt{println!()} exibe o valor dessa variável na saída
 padrão.\footnote{O ponto de exclamação indica que \texttt{println!()} não é uma
 função, mas um macro: no Rust, muitas funcionalidades são implementadas por
 meio de metaprogramação com macros sofisticados, que permitem que o compilador
-otimize ao máximo até mesmo as operações mais simples.} O tipo de \texttt{x} é
-inferido como \texttt{i32}, um número inteiro de 32 bits, com
-sinal.\footnote{Há uma variedade de tipos escalares padrão, mas em geral, tipos
-numéricos têm tamanhos explícitos: \texttt{u16} é um \textit{unsigned} de 16
-bits, \texttt{f64} é um \textit{float} de 64 bits, \texttt{isize} é um
-\textit{signed} cujo tamanho é igual ao tamanho de uma palavra na arquitetura
-atual, e assim por diante.}
+otimize ao máximo até mesmo as operações mais simples. Nesse caso, o macro é
+executado a tempo de compilação, e é o \textit{compilador} que gera o código
+que converte nosso inteiro para uma string a ser exibida---ou seja, é muito
+mais eficiente que um \texttt{printf()} em uma linguagem tradicional, que faz a
+conversão a tempo de execução.} O tipo de \texttt{x} é inferido como
+\texttt{i32}, um número inteiro de 32 bits, com sinal.\footnote{Há uma
+variedade de tipos escalares padrão, mas em geral, tipos numéricos têm tamanhos
+explícitos: \texttt{u16} é um \textit{unsigned} de 16 bits, \texttt{u8} é um
+\textit{byte} individual, \texttt{f64} é um \textit{float} de 64 bits,
+\texttt{isize} é um \textit{signed} cujo tamanho é igual ao tamanho de uma
+palavra na arquitetura atual, e assim por diante.}
 
 \begin{minted}{rust}
     fn main() {
@@ -125,19 +129,21 @@ atual, e assim por diante.}
 
 Todas as variáveis são imutáveis por padrão. Para modificá-las, é preciso
 declará-las mutáveis com a palavra \texttt{mut}. Também é possível especificar
-o tipo da variável após seu  nome na declaração. No exemplo abaixo, declaramos
-a variável \texttt{c} com tipo \texttt{char}---isso é, um caractere
+o tipo da variável após seu  nome na declaração, como se faz em Python ou
+TypeScript. No exemplo abaixo, declaramos a variável \textit{mutável}
+\texttt{c} com tipo \texttt{char}---isso é, um caractere
 \textsc{utf}-8:\footnote{Para ser mais exato, um \texttt{char} é um
-\textit{code point}, e não um \textit{grapheme cluster}. A distinção é sutil,
-mas importante para internacionalização da linguagem. \cite{rfc3629}
-\cite{uax29}}
+\textit{code point} especificado pelo padrão \textsc{utf}-8 \cite[§1]{rfc3629},
+e não um \textit{grapheme cluster} do padrão Unicode \cite[§3]{uax29}. A
+distinção é sutil, mas importante para internacionalização da linguagem.
+\cite[Cap.~3, §3]{blandy2021programming}}
 
 \begin{minted}{rust}
     fn main() {
         let mut c: char = '🐍';
         println!("O valor de ‘c’ inicialmente é: {c}");
-        c = '🦀'; // Alterar o valor só é possível pois usamos ‘mut’ acima.
-        println!("O valor de ‘c’ agora é: {c}");
+        c = '🦀'; // Modificar a variável só é possível pois usamos ‘mut’ acima.
+        println!("O valor de ‘c’ modificado é: {c}");
     }
 \end{minted}
 
@@ -157,6 +163,7 @@ práticas de desenvolvimento que foram influenciadas por ele.
 A seção final sintetiza os principais pontos discutidos no trabalho, reforçando
 a relevância da linguagem Rust no cenário atual da computação.
 
+\clearpage
 \printbibliography
 
 \end{document}
