@@ -112,13 +112,13 @@ otimize ao máximo até mesmo as operações mais simples. Nesse caso, o macro �
 executado a tempo de compilação, e é o \textit{compilador} que gera o código
 que converte nosso inteiro para uma string a ser exibida---ou seja, é muito
 mais eficiente que um \texttt{printf()} em uma linguagem tradicional, que faz a
-conversão a tempo de execução.} O tipo de \texttt{x} é inferido como
-\texttt{i32}, um número inteiro de 32 bits, com sinal.\footnote{Há uma
-variedade de tipos escalares padrão, mas em geral, tipos numéricos têm tamanhos
-explícitos: \texttt{u16} é um \textit{unsigned} de 16 bits, \texttt{u8} é um
-\textit{byte} individual, \texttt{f64} é um \textit{float} de 64 bits,
-\texttt{isize} é um \textit{signed} cujo tamanho é igual ao tamanho de uma
-palavra na arquitetura atual, e assim por diante.}
+conversão a tempo de execução. \cite[Cap.~7]{gjengset2021rust}} O tipo de
+\texttt{x} é inferido como \texttt{i32}, um número inteiro de 32 bits, com
+sinal.\footnote{Há uma variedade de tipos escalares padrão, mas em geral, tipos
+numéricos têm tamanhos explícitos: \texttt{u16} é um \textit{unsigned} de 16
+bits, \texttt{u8} é um \textit{byte} individual, \texttt{f64} é um
+\textit{float} de 64 bits, \texttt{isize} é um \textit{signed} cujo tamanho é
+igual ao tamanho de uma palavra na arquitetura atual, e assim por diante.}
 
 \begin{minted}{rust}
     fn main() {
