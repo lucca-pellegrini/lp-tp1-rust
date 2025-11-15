@@ -141,10 +141,10 @@ especificar o tipo da variável após seu  nome na declaração, como se faz em
 Python ou TypeScript. No exemplo abaixo, declaramos a variável \textit{mutável}
 \texttt{c} com tipo \mintinline{rust}{char}---isso é, um caractere
 \textsc{utf}-8.\endnote{Para ser mais exato, um \mintinline{rust}{char} é um
-\textit{code point} especificado pelo padrão \textsc{utf}-8 \cite[§1]{rfc3629},
-e não um \textit{grapheme cluster} do padrão Unicode \cite[§3]{uax29}. A
-distinção é sutil, mas importante para internacionalização da linguagem.
-\cite[cap.~3, §3]{blandy2021programming}}
+\textit{code point} especificado pelo padrão \textsc{utf}-8 \cite[§
+1]{rfc3629}, e não um \textit{grapheme cluster} do padrão Unicode \cite[§
+3]{uax29}. A distinção é sutil, mas importante para internacionalização da
+linguagem. \cite[cap.~3, § 3]{blandy2021programming}}
 
 \begin{minted}{rust}
     fn main() {
@@ -169,7 +169,7 @@ seus elementos são acessados com um índice numérico entre colchetes, com
 verificação do índice feita automaticamente para impedir acessos \textit{out of
 bounds}. Uma slice, por outro lado, é um tipo de \textit{referência} (que em
 Rust chamamos de \textit{empréstimo} ou \textit{borrow}) \cite[cap.~16,
-§5]{google2024comp}, declarada prefixando o tipo com o caractere \texttt{\&},
+§ 5]{google2024comp}, declarada prefixando o tipo com o caractere \texttt{\&},
 que aponta para uma sequência contígua de elementos.\endnote{A fim de exemplo,
 podemos declarar uma referência a um tipo primitivo assim:
 \mintinline{rust}{let b: &i32 = &a}. Com isso, declaramos uma variável
@@ -243,7 +243,7 @@ funcionais, a terceira abordagem, cuja sintaxe é mais limpa e
 \textit{declarativa}, tende a ser preferida, e o ferramental integrado da
 linguagem provavelmente reclamará se o seu projeto incluir funções que usam a
 palavra \mintinline{rust}{return} desnecessariamente.} \cite[cap.~3,
-§3]{klabnik2021rust}
+§ 3]{klabnik2021rust}
 
 \begin{minted}{rust}
     // Note que o tipo de retorno é indicado com uma seta, após os argumentos
@@ -304,9 +304,9 @@ heap, sempre seguindo o conceito de \textit{posse} e \textit{empréstimo}
 (explicado adiante, e semelhante ao \textsc{raii} com \textit{move semantics}
 em C++ moderno). O vetor \mintinline{rust}{Vec<T>}, do módulo
 \mintinline{rust}{std::vec}, tem capacidade mutável e faz gerência automática
-da memória. \cite[cap.~8, §1]{klabnik2021rust}
+da memória. \cite[cap.~8, § 1]{klabnik2021rust}
 \cite[\stddoc{vec/struct.Vec.html\#capacity-and-reallocation}{\protect\mintinline{rust}{struct std::vec::Vec},
-§4}]{rust_std_doc}}, um dicionário, \textit{et cetera}. No exemplo abaixo (que
+§ 4}]{rust_std_doc}}, um dicionário, \textit{et cetera}. No exemplo abaixo (que
 não é o mais eficiente, mas ilustra bem o conceito), implementamos uma função
 que recebe, por empréstimo, uma matriz de doubles---um vetor de vetores
 \mintinline{rust}{Vec<Vec<f64>>}---busca um certo elemento \mintinline{rust}{x:
@@ -320,7 +320,7 @@ dois valores: \mintinline{rust}{None} ou \mintinline{rust}{Some<T>}. Isso é,
 ele representa \textit{nenhum valor} ou \textit{um valor de tipo
 \mintinline{rust}{T}}. Usa-se no lugar de um \mintinline{java}{null} de
 linguagens típicas, já que este introduz dificuldades graves de garantir a
-segurança e a corretude do programa. \cite[cap.~6, §1.2]{klabnik2021rust}
+segurança e a corretude do programa. \cite[cap.~6, § 1.2]{klabnik2021rust}
 \cite[\stddoc{option/index.html}{\protect\mintinline{rust}{mod std::option}}]{rust_std_doc}}
 as coordenadas, se encontrado, como uma tupla \mintinline{rust}{(usize,
 usize)}.\endnote{Usa-se \mintinline{rust}{usize} pois o índice de um vetor ou
