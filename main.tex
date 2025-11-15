@@ -115,7 +115,11 @@ operações mais simples. Nesse caso, o macro é executado a tempo de compilaç�
 e é o \textit{compilador} que gera o código que converte nosso inteiro para uma
 string a ser exibida---ou seja, é muito mais eficiente que um
 \texttt{printf()} em uma linguagem tradicional, que decide como fazer a
-conversão a tempo de execução. \cite[cap.~7]{gjengset2021rust}} O tipo de
+conversão a tempo de execução. O tópico de metaprogramação é extenso e
+complexo, mas é interessante ressaltar que tudo ocorre a tempo de compilação: o
+compilador compila o código-fonte do macro, gera uma biblioteca compartilhada,
+carrega ela dinamicamente, e a usa para gerar o código de máquina apropriado
+toda vez que o macro é referenciado. \cite[cap.~7]{gjengset2021rust}} O tipo de
 \texttt{x} é inferido como \mintinline{rust}{i32}, um número inteiro de 32
 bits, com sinal.\endnote{Há uma variedade de tipos escalares padrão, mas, em
 geral, tipos numéricos têm tamanhos explícitos: \mintinline{rust}{u16} é um
