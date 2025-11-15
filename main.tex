@@ -209,6 +209,68 @@ não-mutável, que referencia os elementos da segunda à quarta posição no arr
     }
 \end{minted}
 
+\section{Instruções como Expressões}
+
+Em Rust, todo e qualquer bloco de código  delimitado por chaves, como o corpo
+de uma função ou de um condicional, pode ser uma \textit{expressão}. Em outras
+palavras, sempre que há um bloco com chaves, é possível \textit{retornar um
+valor}, desde que apareça em um contexto onde um valor é esperado. Isso vale
+para condicionais, laços com \mintinline{rust}{break} valorado, e blocos de
+\textit{pattern matching}. Em geral, não é necessário usar a palavra
+\mintinline{rust}{return}, a menos que desejemos retornar um valor que não está
+\textit{ao final} do bloco; em geral, basta especificar a expressão a ser
+retornada ao final do bloco, sem o ponto e vírgula. Um bloco que não contém um
+\mintinline{rust}{return}, e que termina com ponto e vírgula, implicitamente
+retorna um \mintinline{rust}{()}, que é o tipo vazio, ou \mintinline{c}{void},
+do Rust.\endnote{Tecnicamente, o \mintinline{rust}{()} é o \textit{valor
+unitário}---ele pertence ao \textit{tipo unitário}, que só tem um valor
+possível, então geralmente não fazemos distinção entre o \textit{tipo} e o seu
+\textit{valor}. Nos exemplos que mostramos acima, declaramos a função principal
+como \mintinline{rust}{fn main() {}}, mas nada nos impede de explicitar o tipo
+de retorno vazio com \mintinline{rust}{fn main() -> () {}}.} Por exemplo, se
+quisermos implementar uma função recursiva para computar o fatorial de um
+\mintinline{rust}{u32}, as três versões abaixo são sintaticamente
+equivalentes.\endnote{Na verdade, como o Rust herda muito das linguagens
+funcionais, a terceira abordagem, cuja sintaxe é mais limpa e
+\textit{declarativa}, tende a ser preferida, e o ferramental integrado da
+linguagem provavelmente reclamará se o seu projeto incluir funções que usam a
+palavra \mintinline{rust}{return} desnecessariamente.} \cite[cap.~3,
+§3]{klabnik2021rust}
+
+\begin{minted}{rust}
+    // Note que o tipo de retorno é indicado com uma seta, após os argumentos
+    fn factorial(x: u32) -> u32 {
+        if x <= 1 {
+            return 1;
+        } else {
+            return x * factorial(x - 1);
+        }
+    }
+\end{minted}
+
+\begin{minted}{rust}
+    fn factorial(x: u32) -> u32 {
+        let result = if x <= 1 { 1 } else { x * factorial(x - 1) };
+        return result;
+    }
+\end{minted}
+
+\begin{minted}{rust}
+    fn factorial(x: u32) -> u32 {
+        if x <= 1 { 1 } else { x * factorial(x - 1) }
+    }
+\end{minted}
+
+No terceiro exemplo, a expressão \mintinline{rust}{if}-\mintinline{rust}{else}
+retorna um valor, que será determinado pela condição: se \mintinline{rust}{x <=
+1}, o primeiro bloco é avaliado, e o \mintinline{rust}{1} será retornado, já
+que é a única expressão nele, e não precede um ponto e vírgula---caso
+contrário, o segundo bloco é avaliado. Pode-se entender, observando o
+aninhamento dos blocos com chaves na função, que cada \textit{branch} da
+condicional pode retornar um valor, a expressão condicional \textit{em si}
+também retorna um valor, e a função, que só contém essa expressão condicional,
+retornará o mesmo que ela.
+
 % \section{Análise crítica}
 %
 % Esta seção apresentará uma análise crítica da linguagem Rust, destacando três
