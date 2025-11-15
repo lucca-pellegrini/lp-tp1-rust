@@ -156,8 +156,6 @@ da linguagem. \cite[cap.~3, §~Characters]{blandy2021programming}}
     }
 \end{minted}
 
-% TODO: verificar se realmente falaremos sobre os diferentes tipos de string
-
 Isso vale não somente para os tipos primitivos, mas também para os tipos
 compostos. Há três tipos compostos padrão que podem estar na \textit{stack}:
 tuplas, arrays, e slices. Uma tupla é um agrupamento composto de valores de
@@ -188,12 +186,21 @@ de uma referência simples, a slice também carrega informações de comprimento
 \cite[\stddoc{primitive.reference.html}{\protect\texttt{reference}}]{rust_std_doc}
 \cite[\stddoc{primitive.slice.html}{\protect\texttt{slice}}]{rust_std_doc}} No
 exemplo a seguir, uma tupla contendo um inteiro, uma \textit{string
-slice},\endnote{Mais adiante, explicaremos os diferentes tipos de strings em
-Rust, para esclarecer porque e quando usamos \mintinline{rust}{String},
-\mintinline{rust}{&str}, \mintinline{rust}{CStr}, \mintinline{rust}{OsStr},
-\mintinline{rust}{OsString}, \mintinline{rust}{Path},
-\mintinline{rust}{PathBuf}, \textit{et cetera}.} e um booleano é declarada,
-acessada e desestruturada; abaixo, criamos um array mutável de
+slice}, \endnote{O ecossistema de strings em Rust é mais variado do que em C++:
+há \mintinline{rust}{str} (um fragmento imutável de texto \textsc{utf}‐8),
+\mintinline{rust}{String} (sua contraparte alocada no heap), e também tipos
+específicos a interfaces de sistema, como \mintinline{rust}{CStr},
+\mintinline{rust}{OsStr}, \mintinline{rust}{OsString}, \mintinline{rust}{Path}
+e \mintinline{rust}{PathBuf}. Um detalhe notório é que \mintinline{rust}{str} e
+\mintinline{rust}{String} só aceitam texto \textsc{utf}-8. Em nenhum momento
+referimo-nos a arrays de caracteres \mintinline{rust}{[char]} em Rust: cada
+\mintinline{rust}{char} representa um valor Unicode de 4 bytes, enquanto
+strings reais são sequências compactas de bytes \textsc{utf}‐8 com o invariante
+de validade garantido pelo compilador e pela biblioteca padrão. \cite[cap.~3,
+§~String Types]{blandy2021programming}
+\cite[\stddoc{string/struct.String.html\#utf-8}{\protect\mintinline{rust}{struct
+std::string::String}, §~\protect\textsc{utf}-8}]{rust_std_doc}} e um booleano é
+declarada, acessada e desestruturada; abaixo, criamos um array mutável de
 \textit{doubles}, alteramos um elemento, e depois criamos uma slice
 não-mutável, que referencia os elementos da segunda à quarta posição no array
 (índices 1 a 3):
