@@ -149,6 +149,64 @@ distinção é sutil, mas importante para internacionalização da linguagem.
     }
 \end{minted}
 
+Isso vale não somente para os tipos primitivos, mas também para os tipos
+compostos. Há três tipos compostos padrão que podem estar na \textit{stack}:
+tuplas, arrays, e slices. Uma tupla é um agrupamento composto de valores de
+tipos variados com tamanho fixo---uma vez criada, o seu tamanho não pode mudar.
+Elas podem ser declaradas listando seus itens, separados por vírgulas, entre
+parênteses, e seus elementos podem ser acessados com um ponto (\texttt{.})
+seguido de um índice numérico, ou por desestruturação. Já um array é um
+agrupamento contíguo de elementos do mesmo tipo; seu tamanho também é fixo, e
+seus elementos são acessados com um índice numérico entre colchetes, com
+verificação do índice sendo feita automaticamente para impedir acessos
+\textit{out of bounds}. Uma slice, por outro lado, é um tipo de
+\textit{referência} (que em Rust chamamos de \textit{empréstimo} ou
+\textit{borrow}) \cite[cap.~16, §5]{google2024comp}, declarada prefixando o
+tipo com o caractere \texttt{\&}, que aponta para uma sequência contígua de
+elementos.\footnote{A fim de exemplo, podemos declarar uma referência a um tipo
+primitivo assim: \mintinline{rust}{let b: &i32 = &a}. Com isso, declaramos uma
+variável \texttt{b}, de tipo \mintinline{rust}{&i32} (isso é, uma referência ou
+\textit{empréstimo} de um inteiro de 32 bits com sinal), que aponta para uma
+variável \texttt{a}, de tipo \mintinline{rust}{i32}. Por outro lado, se
+declaramos \mintinline{rust}{let b: &[i32] = &a}, temos uma \textit{slice} de
+um array de \mintinline{rust}{i32}s: um empréstimo de um segmento contíguo da
+memória que contém zero ou mais elementos do tipo \mintinline{rust}{i32}. O
+\textit{borrow checker} do Rust, que discutiremos mais adiante, assegura que o
+empréstimo seja válido e impede que a slice seja usada se o dado referenciado
+deixar de existir---essa garantia é feita a tempo de compilação. Diferentemente
+de uma referência simples, a slice também carrega informações de comprimento
+(\texttt{len}) e capacidade.} No exemplo a seguir, uma tupla contendo um
+inteiro, uma \textit{string slice},\footnote{Mais adiante, explicaremos os
+diferentes tipos de strings em Rust, para esclarecer por quê e quando usamos
+\mintinline{rust}{String}, \mintinline{rust}{&str}, \mintinline{rust}{CStr},
+\mintinline{rust}{OsStr}, \mintinline{rust}{OsString}, \mintinline{rust}{Path},
+\mintinline{rust}{PathBuf}, \textit{et cetera}.} e um booleano é declarada,
+acessada e desestruturada; abaixo, criamos um array mutável de
+\textit{doubles}, alteramos um elemento, e depois criamos uma slice
+não-mutável, que referencia os elementos da segunda à quarta posição no array
+(índices 1 a 3):
+
+\begin{minted}{rust}
+    fn main() {
+        // Criamos uma tupla, com três elementos de diferentes tipos
+        let minha_tupla: (i32, &str, bool) = (47, "Hello, World!", false);
+        println!("Item na posição 1 da tupla: {}", minha_tupla.1);
+
+        // Desestruturamos a tupla, criando três variáveis individuais
+        let (num, string, booleano) = minha_tupla;
+        println!("Variáveis: ({}, {}, {})", num, string, booleano);
+
+        // Criamos um array mutável com capacidade para cinco floats de 64 bits
+        let mut meu_array: [f64; 5] = [0.1, 1.0, 1.5, 7.25, 1e100];
+        meu_array[0] = 3.14;
+        println!("Item no índice 0 do array: {}", meu_array[0]);
+
+        // Criamos uma referência imutável que ‘enxerga’ os índices 1 a 3 do array
+        let minha_slice: &[f64] = &meu_array[1..4];
+        println!("Item no índice 2 da slice: {}", minha_slice[2]);
+    }
+\end{minted}
+
 \section{Análise crítica}
 
 Esta seção apresentará uma análise crítica da linguagem Rust, destacando três
