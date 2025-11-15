@@ -284,6 +284,67 @@ de parênteses como em outras linguagens \textit{C-like}---a obrigatoriedade das
 chaves ao redor dos blocos é suficiente para desambiguar a condição do
 consequente.
 
+\subsection{Laços de Repetição}
+
+Em Rust, há três tipos de laços de repetição: \mintinline{rust}{loop},
+\mintinline{rust}{while} e \mintinline{rust}{for}. Desses, o laço infinito
+\mintinline{rust}{loop} é o único que pode retornar um valor diferente de
+\mintinline{rust}{()}, e só pode ser terminado com um
+\mintinline{rust}{break}---os outros laços sempre podem ser reduzidos a esse,
+mas existem por conveniência e legibilidade. Um \mintinline{rust}{break} pode
+opcionalmente ser \textit{valorado}---isso é, pode receber um valor para o
+\mintinline{rust}{loop} retornar---e também pode receber um \textit{rótulo},
+para indicar \textit{de qual laço} o programa deve sair, quando há ambiguidade
+entre laços aninhados. Um \mintinline{rust}{while} funciona como em qualquer
+outra linguagem, repetindo o bloco até que sua condição seja falsa, e um
+\mintinline{rust}{for} itera sobre os elementos de um valor iterável, como um
+array, um vetor\endnote{Até então, só mencionamos tipos que vivem na stack, mas
+a biblioteca padrão do Rust dispõe de uma variedade de tipos para dados no
+heap, sempre seguindo o conceito de \textit{posse} e \textit{empréstimo}
+(explicado adiante, e semelhante ao \textsc{raii} com \textit{move semantics}
+em C++ moderno). O vetor \mintinline{rust}{Vec<T>}, do módulo
+\mintinline{rust}{std::vec}, tem capacidade mutável e faz gerência automática
+da memória. \cite[cap.~8, §1]{klabnik2021rust}}, um dicionário, \textit{et
+cetera}. No exemplo abaixo (que não é o mais eficiente, mas ilustra bem o
+conceito), implementamos uma função que recebe, por empréstimo, uma matriz de
+doubles---um vetor de vetores \mintinline{rust}{Vec<Vec<f64>>}---busca um certo
+elemento \mintinline{rust}{x: f64} nela, e retorna opcionalmente\endnote{O tipo
+\mintinline{rust}{Option<T>} é um \textit{enum}, ou \textit{tipo de
+enumeração}, amplamente usado na biblioteca padrão. Se um
+\mintinline{rust}{struct} pode ser entendido como uma \textit{conjunção} de
+vários valores ou atributos agrupados, um \mintinline{rust}{enum} pode ser
+entendido como a \textit{disjunção} de vários valores possíveis. No caso do
+\mintinline{rust}{Option<T>}, ele só pode ter dois valores:
+\mintinline{rust}{None} ou \mintinline{rust}{Some<T>}. Isso é, ele representa
+\textit{nenhum valor} ou \textit{um valor de tipo \mintinline{rust}{T}}. Usa-se
+no lugar de um \mintinline{java}{null} de linguagens típicas, já que este
+introduz dificuldades graves de garantir a segurança e a corretude do
+programa.} as coordenadas, se encontrado, como uma tupla
+\mintinline{rust}{(usize, usize)}.\endnote{Usa-se \mintinline{rust}{usize} pois
+o índice de um vetor ou de um array representa um deslocamento relativo a algum
+endereço em memória, então seu tamanho depende da arquitetura. É semelhante ao
+uso de \mintinline{c}{size_t} em C, apesar de que, na prática, programas em C
+frequentemente optam por usar \mintinline{c}{int}s por convenção.}
+
+\begin{minted}{rust}
+    fn busca_matriz(matriz: &Vec<Vec<f64>>, x: f64) -> Option<(usize, usize)> {
+        'loop_externo: loop {
+            // O ‘enumerate’ produz o índice atual, junto ao elemento, em uma tupla
+            for (i, linha) in matriz.iter().enumerate() { // Itera sobre linhas
+                for (j, valor) in linha.iter().enumerate() { // Itera sobre colunas
+                    // Se o nosso ‘x’ foi encontrado, saímos do loop externo
+                    if *valor == x {
+                        break 'loop_externo Some((i, j));
+                    }
+                }
+            }
+
+            // Se não encontrado, retornamos ‘None’
+            break None; // O rótulo é desnecessário aqui, pois não há ambiguidade
+        }
+    }
+\end{minted}
+
 % \section{Análise crítica}
 %
 % Esta seção apresentará uma análise crítica da linguagem Rust, destacando três
