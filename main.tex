@@ -305,11 +305,12 @@ outra linguagem, repetindo o bloco até que sua condição seja falsa, e um
 \mintinline{rust}{for} itera sobre os elementos de um valor iterável, como um
 array, um vetor\endnote{Até então, só mencionamos tipos que vivem na stack, mas
 a biblioteca padrão do Rust dispõe de uma variedade de tipos para dados no
-heap, sempre seguindo o conceito de \textit{posse} e \textit{empréstimo}
-(explicado adiante, e semelhante ao \textsc{raii} com \textit{move semantics}
-em C++ moderno). O vetor \mintinline{rust}{Vec<T>}, do módulo
-\mintinline{rust}{std::vec}, tem capacidade mutável e faz gerência automática
-da memória. \cite[cap.~8, §~Storing Lists of Values with
+heap \cite[\stddoc{collections/index.html}{\protect\mintinline{rust}{mod
+std::collections}}]{rust_std_doc}, sempre seguindo o conceito de \textit{posse}
+e \textit{empréstimo} (explicado adiante, e semelhante ao \textsc{raii} com
+\textit{move semantics} em C++ moderno). O vetor \mintinline{rust}{Vec<T>}, do
+módulo \mintinline{rust}{std::vec}, tem capacidade mutável e faz gerência
+automática da memória. \cite[cap.~8, §~Storing Lists of Values with
 Vectors]{klabnik2021rust}
 \cite[\stddoc{vec/struct.Vec.html\#capacity-and-reallocation}{\protect\mintinline{rust}{struct
 std::vec::Vec}, §~Capacity and reallocation}]{rust_std_doc}}, um dicionário,
@@ -327,7 +328,8 @@ dois valores: \mintinline{rust}{None} ou \mintinline{rust}{Some<T>}. Isso é,
 ele representa \textit{nenhum valor} ou \textit{um valor de tipo
 \mintinline{rust}{T}}. Usa-se no lugar de um \mintinline{java}{null} de
 linguagens típicas, já que este introduz dificuldades graves de garantir a
-segurança e a corretude do programa. \cite[cap.~6, §~1.2]{klabnik2021rust}
+segurança e a corretude do programa. \cite[cap.~6, §~The Option
+Enum…]{klabnik2021rust}
 \cite[\stddoc{option/index.html}{\protect\mintinline{rust}{mod
 std::option}}]{rust_std_doc}} as coordenadas, se encontrado, como uma tupla
 \mintinline{rust}{(usize, usize)}.\endnote{Usa-se \mintinline{rust}{usize} pois
