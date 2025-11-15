@@ -37,6 +37,7 @@
 
 % Configuração das fontes
 \usepackage{fontspec}
+	\setmainfont{TeX Gyre Pagella} % Palatino clone
 	\setmonofont{BlexMonoNerdFontPropo}[Scale=0.75]
 	% Configuração de fallback para emojis
 	\newfontfamily{\emojifont}{Noto Color Emoji}[Renderer=HarfBuzz,Scale=0.75]
@@ -49,11 +50,14 @@
 
 \usepackage{abstract}
 	\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Deixa o "Resumo" em negrito
-	\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Deixa o conteúdo do resumo em itálico
+	% \renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Deixa o conteúdo do resumo em itálico
+	\renewcommand{\abstracttextfont}{\normalfont\small}
 
 \usepackage{titlesec} % Customização do título
 	\renewcommand\thesection{\Roman{section}} % Números romanos para as secções
 	\renewcommand\thesubsection{\roman{subsection}} % Para as subsecções também
+	\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge} % Formato dos capítulos
+	\titlespacing*{\chapter}{0pt}{0pt}{20pt} % Reduz drasticamente a margem superior dos capítulos (era ~50pt por padrão)
 	\titleformat{\section}[block]{\large\scshape}{\thesection.}{1em}{} % Muda a aparência do título das secções
 	\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Muda a aparência do título das subsecções
 
