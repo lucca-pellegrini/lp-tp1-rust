@@ -84,7 +84,7 @@ Apesar disso, o Rust não se limita apenas à programação de sistemas
 operacionais, sistemas embarcados, e outras aplicações de \textit{baixo nível}:
 suas características ergonômicas e sua flexibilidade possibilitam o
 desenvolvimento de servidores web, ferramentas para \textit{DevOps}, interfaces
-gráficas, aplicações web \textit{back end} e---por meio de \textit{web
+gráficas, aplicações de web \textit{back end} e---por meio de \textit{web
 assembly}---\textit{front end}, jogos digitais, bancos de dados, compiladores,
 aplicativos móveis, análise e transcodificação de multimídia, criptomoedas,
 programas assíncronos, aplicações de bioinformática, ferramentas de busca,
@@ -117,7 +117,7 @@ string a ser exibida---ou seja, é muito mais eficiente que um
 \texttt{printf()} em uma linguagem tradicional, que decide como fazer a
 conversão a tempo de execução. \cite[cap.~7]{gjengset2021rust}} O tipo de
 \texttt{x} é inferido como \mintinline{rust}{i32}, um número inteiro de 32
-bits, com sinal.\endnote{Há uma variedade de tipos escalares padrão, mas em
+bits, com sinal.\endnote{Há uma variedade de tipos escalares padrão, mas, em
 geral, tipos numéricos têm tamanhos explícitos: \mintinline{rust}{u16} é um
 \textit{unsigned} de 16 bits, \mintinline{rust}{u8} é um \textit{byte}
 individual, \mintinline{rust}{f64} é um \textit{float} de 64 bits,
@@ -136,7 +136,7 @@ declará-las mutáveis com a palavra \mintinline{rust}{mut}. Também é possíve
 especificar o tipo da variável após seu  nome na declaração, como se faz em
 Python ou TypeScript. No exemplo abaixo, declaramos a variável \textit{mutável}
 \texttt{c} com tipo \mintinline{rust}{char}---isso é, um caractere
-\textsc{utf}-8:\endnote{Para ser mais exato, um \mintinline{rust}{char} é um
+\textsc{utf}-8.\endnote{Para ser mais exato, um \mintinline{rust}{char} é um
 \textit{code point} especificado pelo padrão \textsc{utf}-8 \cite[§1]{rfc3629},
 e não um \textit{grapheme cluster} do padrão Unicode \cite[§3]{uax29}. A
 distinção é sutil, mas importante para internacionalização da linguagem.
@@ -160,26 +160,26 @@ parênteses, e seus elementos podem ser acessados com um ponto (\texttt{.})
 seguido de um índice numérico, ou por desestruturação. Já um array é um
 agrupamento contíguo de elementos do mesmo tipo; seu tamanho também é fixo, e
 seus elementos são acessados com um índice numérico entre colchetes, com
-verificação do índice sendo feita automaticamente para impedir acessos
-\textit{out of bounds}. Uma slice, por outro lado, é um tipo de
-\textit{referência} (que em Rust chamamos de \textit{empréstimo} ou
-\textit{borrow}) \cite[cap.~16, §5]{google2024comp}, declarada prefixando o
-tipo com o caractere \texttt{\&}, que aponta para uma sequência contígua de
-elementos.\endnote{A fim de exemplo, podemos declarar uma referência a um tipo
-primitivo assim: \mintinline{rust}{let b: &i32 = &a}. Com isso, declaramos uma
-variável \texttt{b}, de tipo \mintinline{rust}{&i32} (isso é, uma referência ou
+verificação do índice feita automaticamente para impedir acessos \textit{out of
+bounds}. Uma slice, por outro lado, é um tipo de \textit{referência} (que em
+Rust chamamos de \textit{empréstimo} ou \textit{borrow}) \cite[cap.~16,
+§5]{google2024comp}, declarada prefixando o tipo com o caractere \texttt{\&},
+que aponta para uma sequência contígua de elementos.\endnote{A fim de exemplo,
+podemos declarar uma referência a um tipo primitivo assim:
+\mintinline{rust}{let b: &i32 = &a}. Com isso, declaramos uma variável
+\texttt{b}, de tipo \mintinline{rust}{&i32} (isso é, uma referência ou
 \textit{empréstimo} de um inteiro de 32 bits com sinal), que aponta para uma
 variável \texttt{a}, de tipo \mintinline{rust}{i32}. Por outro lado, se
 declaramos \mintinline{rust}{let b: &[i32] = &a}, temos uma \textit{slice} de
 um array de \mintinline{rust}{i32}s: um empréstimo de um segmento contíguo da
 memória que contém zero ou mais elementos do tipo \mintinline{rust}{i32}. O
 \textit{borrow checker} do Rust, que discutiremos mais adiante, assegura que o
-empréstimo seja válido e impede que a slice seja usada se o dado referenciado
+empréstimo seja válido, e impede que a slice seja usada se o dado referenciado
 deixar de existir---essa garantia é feita a tempo de compilação. Diferentemente
 de uma referência simples, a slice também carrega informações de comprimento
 (\texttt{len}) e capacidade.} No exemplo a seguir, uma tupla contendo um
 inteiro, uma \textit{string slice},\endnote{Mais adiante, explicaremos os
-diferentes tipos de strings em Rust, para esclarecer por quê e quando usamos
+diferentes tipos de strings em Rust, para esclarecer porque e quando usamos
 \mintinline{rust}{String}, \mintinline{rust}{&str}, \mintinline{rust}{CStr},
 \mintinline{rust}{OsStr}, \mintinline{rust}{OsString}, \mintinline{rust}{Path},
 \mintinline{rust}{PathBuf}, \textit{et cetera}.} e um booleano é declarada,
