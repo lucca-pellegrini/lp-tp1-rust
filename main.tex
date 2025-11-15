@@ -126,7 +126,8 @@ geral, tipos numéricos têm tamanhos explícitos: \mintinline{rust}{u16} é um
 \textit{unsigned} de 16 bits, \mintinline{rust}{u8} é um \textit{byte}
 individual, \mintinline{rust}{f64} é um \textit{float} de 64 bits,
 \mintinline{rust}{isize} é um \textit{signed} cujo tamanho é igual ao tamanho
-de uma palavra na arquitetura atual, e assim por diante.}
+de uma palavra na arquitetura atual, e assim por diante.
+\cite[\stddoc{\#primitives}{Primitive Types}]{rust_std_doc}}
 
 \begin{minted}{rust}
     fn main() {
@@ -183,11 +184,14 @@ memória que contém zero ou mais elementos do tipo \mintinline{rust}{i32}. O
 empréstimo seja válido, e impede que a slice seja usada se o dado referenciado
 deixar de existir---essa garantia é feita a tempo de compilação. Diferentemente
 de uma referência simples, a slice também carrega informações de comprimento
-(\texttt{len}) e capacidade.} No exemplo a seguir, uma tupla contendo um
-inteiro, uma \textit{string slice},\endnote{Mais adiante, explicaremos os
-diferentes tipos de strings em Rust, para esclarecer porque e quando usamos
-\mintinline{rust}{String}, \mintinline{rust}{&str}, \mintinline{rust}{CStr},
-\mintinline{rust}{OsStr}, \mintinline{rust}{OsString}, \mintinline{rust}{Path},
+(\texttt{len}) e capacidade.
+\cite[\stddoc{primitive.reference.html}{\protect\texttt{reference}}]{rust_std_doc}
+\cite[\stddoc{primitive.slice.html}{\protect\texttt{slice}}]{rust_std_doc}} No
+exemplo a seguir, uma tupla contendo um inteiro, uma \textit{string
+slice},\endnote{Mais adiante, explicaremos os diferentes tipos de strings em
+Rust, para esclarecer porque e quando usamos \mintinline{rust}{String},
+\mintinline{rust}{&str}, \mintinline{rust}{CStr}, \mintinline{rust}{OsStr},
+\mintinline{rust}{OsString}, \mintinline{rust}{Path},
 \mintinline{rust}{PathBuf}, \textit{et cetera}.} e um booleano é declarada,
 acessada e desestruturada; abaixo, criamos um array mutável de
 \textit{doubles}, alteramos um elemento, e depois criamos uma slice
@@ -235,11 +239,12 @@ unitário}---ele pertence ao \textit{tipo unitário}, que só tem um valor
 possível, então geralmente não fazemos distinção entre o \textit{tipo} e o seu
 \textit{valor}. Nos exemplos que mostramos acima, declaramos a função principal
 como \mintinline{rust}{fn main() {}}, mas nada nos impede de explicitar o tipo
-de retorno vazio com \mintinline{rust}{fn main() -> () {}}.} Por exemplo, se
-quisermos implementar uma função recursiva para computar o fatorial de um
-\mintinline{rust}{u32}, as três versões abaixo são sintaticamente
-equivalentes.\endnote{Na verdade, como o Rust herda muito das linguagens
-funcionais, a terceira abordagem, cuja sintaxe é mais limpa e
+de retorno vazio com \mintinline{rust}{fn main() -> () {}}.
+\cite[\stddoc{primitive.unit.html}{\protect\mintinline{rust}{unit}}]{rust_std_doc}}
+Por exemplo, se quisermos implementar uma função recursiva para computar o
+fatorial de um \mintinline{rust}{u32}, as três versões abaixo são
+sintaticamente equivalentes.\endnote{Na verdade, como o Rust herda muito das
+linguagens funcionais, a terceira abordagem, cuja sintaxe é mais limpa e
 \textit{declarativa}, tende a ser preferida, e o ferramental integrado da
 linguagem provavelmente reclamará se o seu projeto incluir funções que usam a
 palavra \mintinline{rust}{return} desnecessariamente.} \cite[cap.~3,
