@@ -129,7 +129,7 @@ usamos a palavra \mintinline{rust}{fn} para declarar uma função
 \mintinline{rust}{main}, que não recebe parâmetros, e marca o ponto de entrada
 do programa---nela, usamos a palavra \mintinline{rust}{let} para declarar uma
 variável \texttt{x}, e em seguida o macro \mintinline{rust}{println!()} exibe o
-valor dessa variável na saída padrão.\footnote{O ponto de exclamação indica que
+valor dessa variável na saída padrão.\endnote{O ponto de exclamação indica que
 \mintinline{rust}{println!()} não é uma função, mas um macro: no Rust, muitas
 funcionalidades são implementadas por meio de metaprogramação com macros
 sofisticados, que permitem que o compilador otimize ao máximo até mesmo as
@@ -138,9 +138,9 @@ e é o \textit{compilador} que gera o código que converte nosso inteiro para um
 string a ser exibida---ou seja, é muito mais eficiente que um
 \texttt{printf()} em uma linguagem tradicional, que faz a conversão a tempo de
 execução. \cite[cap.~7]{gjengset2021rust}} O tipo de \texttt{x} é inferido como
-\mintinline{rust}{i32}, um número inteiro de 32 bits, com sinal.\footnote{Há
-uma variedade de tipos escalares padrão, mas em geral, tipos numéricos têm
-tamanhos explícitos: \mintinline{rust}{u16} é um \textit{unsigned} de 16 bits,
+\mintinline{rust}{i32}, um número inteiro de 32 bits, com sinal.\endnote{Há uma
+variedade de tipos escalares padrão, mas em geral, tipos numéricos têm tamanhos
+explícitos: \mintinline{rust}{u16} é um \textit{unsigned} de 16 bits,
 \mintinline{rust}{u8} é um \textit{byte} individual, \mintinline{rust}{f64} é
 um \textit{float} de 64 bits, \mintinline{rust}{isize} é um \textit{signed}
 cujo tamanho é igual ao tamanho de uma palavra na arquitetura atual, e assim
@@ -158,7 +158,7 @@ declará-las mutáveis com a palavra \mintinline{rust}{mut}. Também é possíve
 especificar o tipo da variável após seu  nome na declaração, como se faz em
 Python ou TypeScript. No exemplo abaixo, declaramos a variável \textit{mutável}
 \texttt{c} com tipo \mintinline{rust}{char}---isso é, um caractere
-\textsc{utf}-8:\footnote{Para ser mais exato, um \mintinline{rust}{char} é um
+\textsc{utf}-8:\endnote{Para ser mais exato, um \mintinline{rust}{char} é um
 \textit{code point} especificado pelo padrão \textsc{utf}-8 \cite[§1]{rfc3629},
 e não um \textit{grapheme cluster} do padrão Unicode \cite[§3]{uax29}. A
 distinção é sutil, mas importante para internacionalização da linguagem.
@@ -187,7 +187,7 @@ verificação do índice sendo feita automaticamente para impedir acessos
 \textit{referência} (que em Rust chamamos de \textit{empréstimo} ou
 \textit{borrow}) \cite[cap.~16, §5]{google2024comp}, declarada prefixando o
 tipo com o caractere \texttt{\&}, que aponta para uma sequência contígua de
-elementos.\footnote{A fim de exemplo, podemos declarar uma referência a um tipo
+elementos.\endnote{A fim de exemplo, podemos declarar uma referência a um tipo
 primitivo assim: \mintinline{rust}{let b: &i32 = &a}. Com isso, declaramos uma
 variável \texttt{b}, de tipo \mintinline{rust}{&i32} (isso é, uma referência ou
 \textit{empréstimo} de um inteiro de 32 bits com sinal), que aponta para uma
@@ -200,7 +200,7 @@ empréstimo seja válido e impede que a slice seja usada se o dado referenciado
 deixar de existir---essa garantia é feita a tempo de compilação. Diferentemente
 de uma referência simples, a slice também carrega informações de comprimento
 (\texttt{len}) e capacidade.} No exemplo a seguir, uma tupla contendo um
-inteiro, uma \textit{string slice},\footnote{Mais adiante, explicaremos os
+inteiro, uma \textit{string slice},\endnote{Mais adiante, explicaremos os
 diferentes tipos de strings em Rust, para esclarecer por quê e quando usamos
 \mintinline{rust}{String}, \mintinline{rust}{&str}, \mintinline{rust}{CStr},
 \mintinline{rust}{OsStr}, \mintinline{rust}{OsString}, \mintinline{rust}{Path},
@@ -246,6 +246,9 @@ práticas de desenvolvimento que foram influenciadas por ele.
 
 A seção final sintetiza os principais pontos discutidos no trabalho, reforçando
 a relevância da linguagem Rust no cenário atual da computação.
+
+\clearpage
+\printendnotes
 
 \clearpage
 \printbibliography
